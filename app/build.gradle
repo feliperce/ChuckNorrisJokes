@@ -4,6 +4,9 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+def ENDPOINT_DEBUG_URL = "https://api.chucknorris.io/"
+def ENDPOINT_RELEASE_URL = "https://api.chucknorris.io/"
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -19,6 +22,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", 'ENDPOINT_URL', "\"$ENDPOINT_RELEASE_URL\""
+        }
+        debug {
+            buildConfigField "String", 'ENDPOINT_URL', "\"$ENDPOINT_DEBUG_URL\""
         }
     }
 

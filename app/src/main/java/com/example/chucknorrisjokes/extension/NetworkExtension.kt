@@ -1,8 +1,8 @@
 package com.example.chucknorrisjokes.extension
 
+import android.util.Log
 import com.example.chucknorrisjokes.R
 import com.example.chucknorrisjokes.data.remote.response.ErrorResponse
-import com.example.chucknorrisjokes.data.remote.service.RetrofitBuilder
 import com.example.chucknorrisjokes.data.statushandler.ErrorStatus
 import com.example.chucknorrisjokes.data.statushandler.Resource
 import okhttp3.ResponseBody

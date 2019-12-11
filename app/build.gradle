@@ -44,7 +44,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation "androidx.core:core-ktx:$ktx_version"
 
@@ -52,6 +52,7 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
 
     // Test
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test.ext:junit:$androidxtest_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
@@ -89,5 +90,12 @@ dependencies {
 
     // Picasso
     implementation "com.squareup.picasso:picasso:$picasso_version"
+
+    // Dependência principal do Mockito
+    testImplementation 'org.mockito:mockito-core:2.28.2'
+    // Dependência do Mockito para testes no Android
+    androidTestImplementation 'org.mockito:mockito-android:2.28.2'
+    // Dependência do Mockito para ser possível mockar classes e métodos constantes
+    testImplementation 'org.mockito:mockito-inline:2.28.2'
 
 }

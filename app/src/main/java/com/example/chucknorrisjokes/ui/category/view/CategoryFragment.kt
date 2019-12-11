@@ -1,4 +1,4 @@
-package com.example.chucknorrisjokes.ui.category
+package com.example.chucknorrisjokes.ui.category.view
 
 
 import android.os.Bundle

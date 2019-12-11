@@ -1,6 +1,6 @@
 package com.example.chucknorrisjokes.data.statushandler
 
-data class Resource<out T>(val status: Status, val data: T?, val message: Int = -1) {
+data class Resource<out T>(val status: Status, val data: T? = null, val message: Int = -1) {
     companion object {
         fun <T> success(data: T?): Resource<T> {
             return Resource(
@@ -10,11 +10,9 @@ data class Resource<out T>(val status: Status, val data: T?, val message: Int = 
             )
         }
 
-        fun <T> error(errorStatus: ErrorStatus? = null, msg: Int, data: T?): Resource<T> {
+        fun <T> error(errorStatus: ErrorStatus? = null): Resource<T> {
             return Resource(
-                Status.Error(errorStatus),
-                data,
-                msg
+                Status.Error(errorStatus)
             )
         }
 

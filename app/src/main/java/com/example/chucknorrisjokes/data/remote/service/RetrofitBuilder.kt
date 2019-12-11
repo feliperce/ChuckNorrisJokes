@@ -15,7 +15,14 @@ class RetrofitBuilder(var context: Context) : KoinComponent {
         const val BASE_URL = BuildConfig.ENDPOINT_URL
     }
 
-    fun build(): ChuckService {
+    lateinit var retrofit: Retrofit
+    lateinit var chuckService: ChuckService
+
+    init {
+        build()
+    }
+
+    fun build() {
 
         val interceptor = HttpLoggingInterceptor()
         interceptor.level =
@@ -27,11 +34,13 @@ class RetrofitBuilder(var context: Context) : KoinComponent {
             .addInterceptor(interceptor)
             .build()
 
-        return Retrofit.Builder()
+        retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
-            .build().create(ChuckService::class.java)
+            .build()
+
+        chuckService = retrofit.create(ChuckService::class.java)
     }
 }

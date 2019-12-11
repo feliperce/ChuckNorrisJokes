@@ -3,11 +3,17 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 def ENDPOINT_DEBUG_URL = "https://api.chucknorris.io/"
 def ENDPOINT_RELEASE_URL = "https://api.chucknorris.io/"
 
 android {
+
+    dataBinding {
+        enabled true
+    }
+
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {

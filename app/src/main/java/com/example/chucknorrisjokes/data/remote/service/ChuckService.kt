@@ -4,6 +4,7 @@ import com.example.chucknorrisjokes.data.remote.response.RandomJokeResponse
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface ChuckService {
     companion object {
@@ -16,4 +17,9 @@ interface ChuckService {
 
     @GET(CATEGORIES_PATH)
     fun getCategories() : Deferred<Response<List<String>>>
+
+    @GET(RANDOM_JOKE_PATH)
+    fun getRandomJokeByCategory(
+        @Query("category") category: String
+    ): Deferred<Response<RandomJokeResponse>>
 }

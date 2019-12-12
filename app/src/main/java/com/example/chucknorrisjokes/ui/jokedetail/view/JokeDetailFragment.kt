@@ -1,24 +1,25 @@
 package com.example.chucknorrisjokes.ui.jokedetail.view
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
-
 import com.example.chucknorrisjokes.R
 import com.example.chucknorrisjokes.databinding.FragmentJokeDetailBinding
 import com.example.chucknorrisjokes.extension.getErrorStringOrNull
-import com.example.chucknorrisjokes.ui.category.viewmodel.CategoryViewModel
 import com.example.chucknorrisjokes.ui.jokedetail.viewmodel.JokeDetailViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_joke_detail.*
-import org.jetbrains.anko.support.v4.browse
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
+
 
 class JokeDetailFragment : Fragment() {
 
@@ -37,8 +38,12 @@ class JokeDetailFragment : Fragment() {
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (activity as AppCompatActivity?)?.supportActionBar?.title = args.category
+
         viewModel.let { vm ->
 
             vm.errorHandlerLiveData.observe(this, Observer {

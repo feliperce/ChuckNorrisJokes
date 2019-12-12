@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TranslucView">
+        <item name="android:background">@drawable/transluc_black_bg</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:padding">@dimen/default_margin</item>
+    </style>
+
 </resources>

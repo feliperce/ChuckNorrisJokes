@@ -64,7 +64,9 @@ class CategoryFragment : Fragment() {
     private fun initCategoryAdapter(categoryList: List<String>) {
         val adapter = CategoryAdapter(categoryList).apply {
             onClickLiveData.observe(requireActivity(), Observer {
-
+                val action = CategoryFragmentDirections
+                    .actionCategoryFragmentToJokeDetailFragment(it)
+                findNavController().navigate(action)
             })
         }
 

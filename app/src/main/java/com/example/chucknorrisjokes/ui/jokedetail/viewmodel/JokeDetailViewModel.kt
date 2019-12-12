@@ -1,33 +1,39 @@
-package com.example.chucknorrisjokes.ui.category.viewmodel
+package com.example.chucknorrisjokes.ui.jokedetail.viewmodel
 
 import androidx.lifecycle.*
-import com.example.chucknorrisjokes.data.remote.service.ChuckService
 import com.example.chucknorrisjokes.data.repository.JokeRepository
 import com.example.chucknorrisjokes.data.statushandler.Status
 import com.example.chucknorrisjokes.exception.ErrorException
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import java.lang.Exception
 
-class CategoryViewModel(private val jokeRepository: JokeRepository) : ViewModel() {
+class JokeDetailViewModel(private val jokeRepository: JokeRepository) : ViewModel() {
 
     private val dataLoading = MutableLiveData<Boolean>()
     val dataLoadingLiveData: LiveData<Boolean> = dataLoading
 
-    private val category = MutableLiveData<List<String>>()
-    val categoryLiveData: LiveData<List<String>> = category
+    private val jokeText = MutableLiveData<String>()
+    val jokeLiveData: LiveData<String> = jokeText
+
+    private val iconUrl = MutableLiveData<String>()
+    val iconLiveData: LiveData<String> = iconUrl
+
+    private val url = MutableLiveData<String>()
+    val urlLiveData: LiveData<String> = url
 
     private val errorHandler = MutableLiveData<ErrorException>()
     val errorHandlerLiveData: LiveData<ErrorException> = errorHandler
 
-    fun getJokeCategories() {
+    fun getJokeByCategory(category: String) {
         viewModelScope.launch {
-            jokeRepository.getJokeCategories().collect { res ->
+            jokeRepository.getRandomJokeByCategory(category).collect { res ->
                 when (res.status) {
                     is Status.Success -> {
-                        category.postValue(res.data)
+                        res.data?.let { data ->
+                            jokeText.postValue(data.value)
+                            iconUrl.postValue(data.iconUrl)
+                            url.postValue(data.url)
+                        }
                     }
                     is Status.Loading -> {
                         dataLoading.postValue(res.status.isLoading)

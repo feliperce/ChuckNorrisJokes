@@ -9,4 +9,7 @@
     <!-- Empty State -->
     <string name="empty_state_msg">Nenhuma informação foi encontrada, toque aqui para tentar novamente</string>
 
+    <!-- Joke Detail -->
+    <string name="joke_navigate_button">Ver piada no navegador</string>
+
 </resources>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.chucknorrisjokes.ui.jokedetail.viewmodel.JokeDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rootLayout"
+        tools:context=".ui.category.view.CategoryFragment">
+
+        <ImageView
+            android:id="@+id/jokeImageView"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            tools:src="@drawable/ic_launcher_background"
+            android:adjustViewBounds="true"
+            app:picassoSrc="@{viewModel.iconLiveData}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/jokeTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:text="fddfsdfsdfsdfsdfsfsdfsdf"
+            android:text="@{viewModel.jokeLiveData}"
+            style="@style/TranslucView"
+            app:layout_constraintBottom_toBottomOf="@+id/jokeImageView"
+            app:layout_constraintStart_toStartOf="@+id/jokeImageView"
+            app:layout_constraintEnd_toEndOf="@+id/jokeImageView" />
+
+        <Button
+            android:id="@+id/goToUrlButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/joke_navigate_button"
+            android:layout_marginTop="@dimen/default_margin"
+            app:browseToUrlOnClick="@{viewModel.urlLiveData}"
+            app:layout_constraintTop_toBottomOf="@+id/jokeImageView"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:boolVisibility="@{viewModel.dataLoadingLiveData}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/refreshFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_refresh_white"
+            android:layout_margin="@dimen/default_margin"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

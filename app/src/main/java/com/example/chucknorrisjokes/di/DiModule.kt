@@ -4,6 +4,7 @@ import com.example.chucknorrisjokes.BuildConfig
 import com.example.chucknorrisjokes.data.remote.service.ChuckService
 import com.example.chucknorrisjokes.data.repository.JokeRepository
 import com.example.chucknorrisjokes.ui.category.viewmodel.CategoryViewModel
+import com.example.chucknorrisjokes.ui.jokedetail.viewmodel.JokeDetailViewModel
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -46,5 +47,6 @@ val respositoryModule = module {
 }
 
 val viewModelModule = module {
-    viewModel { CategoryViewModel(get(), get(), get()) }
+    viewModel { CategoryViewModel(get()) }
+    viewModel { JokeDetailViewModel(get()) }
 }

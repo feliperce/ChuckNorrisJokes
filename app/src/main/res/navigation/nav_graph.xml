@@ -8,5 +8,17 @@
         android:id="@+id/categoryFragment"
         android:name="com.example.chucknorrisjokes.ui.category.view.CategoryFragment"
         android:label="fragment_category"
-        tools:layout="@layout/fragment_category" />
+        tools:layout="@layout/fragment_category" >
+        <action
+            android:id="@+id/action_categoryFragment_to_jokeDetailFragment"
+            app:destination="@id/jokeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/jokeDetailFragment"
+        android:name="com.example.chucknorrisjokes.ui.jokedetail.view.JokeDetailFragment"
+        android:label="JokeDetailFragment" >
+        <argument
+            android:name="category"
+            app:argType="string" />
+    </fragment>
 </navigation>

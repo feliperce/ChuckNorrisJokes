@@ -1,11 +1,13 @@
 package com.example.chucknorrisjokes.data.remote.response
 
+import com.google.gson.annotations.SerializedName
+
 data class RandomJokeResponse(
     val categories: List<String>? = arrayListOf(),
-    val created_at: String?,
-    val icon_url: String?,
+    @SerializedName("created_at") val createdAt: String?,
+    @SerializedName("icon_url") val iconUrl: String?,
     val id: String?,
-    val updated_at: String?,
+    @SerializedName("updated_at") val updatedAt: String?,
     val url: String?,
     val value: String?
 )

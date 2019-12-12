@@ -30,7 +30,8 @@ class JokeRepository(private val retrofit: Retrofit, private val chuckService: C
         })
     }.onStart {
         emit(Resource.loading(true))
+    }.onCompletion {
+        emit(Resource.loading(false))
     }
-
 
 }

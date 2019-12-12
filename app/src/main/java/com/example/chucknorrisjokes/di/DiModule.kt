@@ -3,9 +3,11 @@ package com.example.chucknorrisjokes.di
 import com.example.chucknorrisjokes.BuildConfig
 import com.example.chucknorrisjokes.data.remote.service.ChuckService
 import com.example.chucknorrisjokes.data.repository.JokeRepository
+import com.example.chucknorrisjokes.ui.category.viewmodel.CategoryViewModel
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -44,5 +46,5 @@ val respositoryModule = module {
 }
 
 val viewModelModule = module {
-
+    viewModel { CategoryViewModel(get(), get(), get()) }
 }

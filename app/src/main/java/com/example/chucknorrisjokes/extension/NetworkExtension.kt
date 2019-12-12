@@ -3,8 +3,11 @@ package com.example.chucknorrisjokes.extension
 import android.util.Log
 import com.example.chucknorrisjokes.R
 import com.example.chucknorrisjokes.data.remote.response.ErrorResponse
-import com.example.chucknorrisjokes.data.statushandler.ErrorStatus
 import com.example.chucknorrisjokes.data.statushandler.Resource
+import com.example.chucknorrisjokes.exception.ConnectionTimeoutException
+import com.example.chucknorrisjokes.exception.GenericException
+import com.example.chucknorrisjokes.exception.NoConnectionException
+import com.example.chucknorrisjokes.exception.ServiceException
 import okhttp3.ResponseBody
 import retrofit2.Converter
 import retrofit2.Response
@@ -26,13 +29,13 @@ inline fun <reified T> Retrofit.networkCall(service: Retrofit.() -> Response<T>)
             val errorBody = response.errorBody()
 
             if (errorBody == null) {
-                Resource.error(ErrorStatus.Generic(R.string.error_generic))
+                Resource.error(GenericException(R.string.error_generic))
             } else {
                 val errorConverter: Converter<ResponseBody, ErrorResponse> =
                     this.responseBodyConverter(ErrorResponse::class.java, arrayOf())
 
                 val error = errorConverter.convert(errorBody)
-                Resource.error(ErrorStatus.Service(error))
+                Resource.error(ServiceException(error))
             }
 
         }
@@ -40,12 +43,12 @@ inline fun <reified T> Retrofit.networkCall(service: Retrofit.() -> Response<T>)
 
         when (e) {
             is UnknownHostException -> {
-                Resource.error(ErrorStatus.NoNetwork(R.string.no_connection))
+                Resource.error(NoConnectionException(R.string.no_connection))
             }
             is TimeoutException -> {
-                Resource.error(ErrorStatus.Timeout(R.string.error_timeout))
+                Resource.error(ConnectionTimeoutException(R.string.error_timeout))
             }
-            else -> Resource.error(ErrorStatus.Generic(R.string.error_generic))
+            else -> Resource.error(GenericException(R.string.error_generic))
         }
     }
 }

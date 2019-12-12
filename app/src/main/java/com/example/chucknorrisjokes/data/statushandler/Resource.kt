@@ -1,5 +1,7 @@
 package com.example.chucknorrisjokes.data.statushandler
 
+import java.lang.Exception
+
 data class Resource<out T>(val status: Status, val data: T? = null, val message: Int = -1) {
     companion object {
         fun <T> success(data: T?): Resource<T> {
@@ -10,17 +12,15 @@ data class Resource<out T>(val status: Status, val data: T? = null, val message:
             )
         }
 
-        fun <T> error(errorStatus: ErrorStatus? = null): Resource<T> {
+        fun <T> error(exception: Exception? = null): Resource<T> {
             return Resource(
-                Status.Error(errorStatus)
+                Status.Error(exception)
             )
         }
 
-        fun <T> loading(data: T? = null): Resource<T> {
+        fun <T> loading(isLoading: Boolean = false): Resource<T> {
             return Resource(
-                Status.Loading,
-                data,
-                -1
+                Status.Loading(false)
             )
         }
     }

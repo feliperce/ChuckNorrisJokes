@@ -17,23 +17,5 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        GlobalScope.launch {
-            /*val c = RetrofitBuilder(applicationContext)
-            val res = c.networkCall {
-                c.chuckService.getRandomJokeByCategory("dev").await()
-            }
-
-            Log.d("Main", res.message.toString())*/
-
-            val bbb = jokeRepository.getJokeCategories().collect {
-
-            }
-
-            val ccc = jokeRepository.getRandomJokeByCategory("dev")
-            Log.d("Main", "dev")
-
-
-        }
     }
 }

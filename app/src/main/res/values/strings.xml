@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">ChuckNorris Jokes</string>
+
+    <!-- ERROR -->
+    <string name="error_generic">Ocorreu um erro inesperado, tente novamente mais tarde.</string>
+    <string name="no_connection">Você está sem conexão com a internet.</string>
+    <string name="error_timeout">O serviço está temporariamente indisponível, tente novamente mais tarde</string>
+
+    <!-- Empty State -->
+    <string name="empty_state_msg">Nenhuma informação foi encontrada, toque aqui para tentar novamente</string>
+
+    <!-- Joke Detail -->
+    <string name="joke_navigate_button">Ver piada no navegador</string>
+
 </resources>

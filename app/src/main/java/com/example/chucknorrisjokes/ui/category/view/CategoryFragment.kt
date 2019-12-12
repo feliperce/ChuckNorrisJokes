@@ -42,9 +42,6 @@ class CategoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.let { vm ->
             vm.categoryLiveData.observe(this, Observer {
-/*                it?.forEach {
-                    Log.d("Main", it)
-                }*/
                 it?.let { categoryList ->
                     initCategoryAdapter(categoryList)
                 }
@@ -57,6 +54,10 @@ class CategoryFragment : Fragment() {
             })
 
             vm.getJokeCategories()
+
+            refreshFab.setOnClickListener {
+                vm.getJokeCategories()
+            }
         }
 
     }

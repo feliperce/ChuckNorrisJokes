@@ -16,18 +16,14 @@ import com.example.chucknorrisjokes.ui.category.viewmodel.CategoryViewModel
 import kotlinx.android.synthetic.main.fragment_category.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-/**
- * A simple [Fragment] subclass.
- */
 class CategoryFragment : Fragment() {
 
-    val viewModel: CategoryViewModel by viewModel()
+    private val viewModel: CategoryViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_category, container, false)
     }
 
@@ -46,11 +42,14 @@ class CategoryFragment : Fragment() {
             vm.getJokeCategories()
         }
 
-
     }
 
     private fun initCategoryAdapter(categoryList: List<String>) {
-        val adapter = CategoryAdapter(categoryList)
+        val adapter = CategoryAdapter(categoryList).apply {
+            onClickLiveData.observe(requireActivity(), Observer {
+
+            })
+        }
 
         categoryRecyclerView.apply {
             this.adapter = adapter

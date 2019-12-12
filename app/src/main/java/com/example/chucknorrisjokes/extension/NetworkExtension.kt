@@ -35,7 +35,7 @@ inline fun <reified T> Retrofit.networkCall(service: Retrofit.() -> Response<T>)
                     this.responseBodyConverter(ErrorResponse::class.java, arrayOf())
 
                 val error = errorConverter.convert(errorBody)
-                Resource.error(ServiceException(error))
+                Resource.error(ServiceException(-1, error))
             }
 
         }

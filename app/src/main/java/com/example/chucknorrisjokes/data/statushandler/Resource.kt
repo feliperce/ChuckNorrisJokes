@@ -1,5 +1,6 @@
 package com.example.chucknorrisjokes.data.statushandler
 
+import com.example.chucknorrisjokes.exception.ErrorException
 import java.lang.Exception
 
 data class Resource<out T>(val status: Status, val data: T? = null, val message: Int = -1) {
@@ -12,7 +13,7 @@ data class Resource<out T>(val status: Status, val data: T? = null, val message:
             )
         }
 
-        fun <T> error(exception: Exception? = null): Resource<T> {
+        fun <T> error(exception: ErrorException? = null): Resource<T> {
             return Resource(
                 Status.Error(exception)
             )

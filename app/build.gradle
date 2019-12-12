@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 def ENDPOINT_DEBUG_URL = "https://api.chucknorris.io/"
 def ENDPOINT_RELEASE_URL = "https://api.chucknorris.io/"

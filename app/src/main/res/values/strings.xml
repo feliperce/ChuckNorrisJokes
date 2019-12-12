@@ -6,6 +6,7 @@
     <string name="no_connection">Você está sem conexão com a internet.</string>
     <string name="error_timeout">O serviço está temporariamente indisponível, tente novamente mais tarde</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Empty State -->
+    <string name="empty_state_msg">Nenhuma informação foi encontrada, toque aqui para tentar novamente</string>
+
 </resources>
